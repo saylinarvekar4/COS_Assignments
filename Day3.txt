@@ -1,0 +1,136 @@
+Question 1
+#!/bin/bash
+read -p "Enter number: " n
+if [ $((n%2)) -eq 0 ]; then echo "Even"; else echo "Odd"; fi
+
+
+Question 2
+#!/bin/bash
+read a b c
+largest=$a
+[ $b -gt $largest ] && largest=$b
+[ $c -gt $largest ] && largest=$c
+echo $largest
+
+
+Question 3
+#!/bin/bash
+read -p "Enter number: " n
+flag=1
+for ((i=2;i<=n/2;i++)); do if [ $((n%i)) -eq 0 ]; then flag=0; break; fi; done
+[ $n -le 1 ] && flag=0
+[ $flag -eq 1 ] && echo "Prime" || echo "Not Prime"
+
+
+Question 4
+#!/bin/bash
+read n
+fact=1
+for ((i=1;i<=n;i++)); do fact=$((fact*i)); done
+echo $fact
+
+
+Question 5
+#!/bin/bash
+read n
+for ((i=1;i<=10;i++)); do echo "$n x $i = $((n*i))"; done
+
+
+Question 6
+#!/bin/bash
+read a b
+read op
+case $op in +) echo $((a+b));; -) echo $((a-b));; "*") echo $((a*b));; /) echo $((a/b));; *) echo "Invalid";; esac
+
+
+Question 7
+#!/bin/bash
+i=2
+while [ $i -le 20 ]; do echo $i; i=$((i+2)); done
+
+
+Question 8
+#!/bin/bash
+i=1
+until [ $i -gt 20 ]; do echo $i; i=$((i+2)); done
+
+
+Question 9
+#!/bin/bash
+read n
+sum=0
+for ((i=1;i<=n;i++)); do sum=$((sum+i)); done
+echo $sum
+
+
+Question 10
+#!/bin/bash
+read n
+for ((i=1;i<=n;i++)); do for ((j=1;j<=i;j++)); do printf "*"; done; echo; done
+
+
+Question 11
+#!/bin/bash
+read n
+num=1
+for ((i=1;i<=n;i++)); do for ((j=1;j<=i;j++)); do printf "$num "; num=$((num+1)); done; echo; done
+
+
+Question 12
+#!/bin/bash
+read n
+rev=0
+while [ $n -gt 0 ]; do rev=$((rev*10+n%10)); n=$((n/10)); done
+echo $rev
+
+
+Question 13
+#!/bin/bash
+fact(){ [ $1 -le 1 ] && echo 1 || echo $(($1*$(fact $(($1-1))))); }
+read n
+fact $n
+
+
+Question 14
+#!/bin/bash
+read mobile
+[[ $mobile =~ ^[0-9]{10}$ ]] && echo Valid || echo Invalid
+
+
+Question 15
+#!/bin/bash
+read password
+[[ $password =~ ^(?=.*[A-Za-z])(?=.*[0-9]).{8,}$ ]] && echo Valid || echo Invalid
+
+
+Question 16
+#!/bin/bash
+read file
+read pattern
+grep "$pattern" "$file"
+
+
+Question 17
+#!/bin/bash
+read file
+read old
+read new
+sed -i "s/$old/$new/g" "$file"
+
+
+Question 18
+#!/bin/bash
+read file
+read word
+grep -o "$word" "$file" | wc -l
+
+
+Question 19
+#!/bin/bash
+ps -eo pid,ppid,cmd,%cpu --sort=-%cpu | head -6
+
+
+Question 20
+#!/bin/bash
+ps -eo pid,ppid,cmd,%mem --sort=-%mem | head -6
+
