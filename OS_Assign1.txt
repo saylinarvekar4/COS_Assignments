@@ -1,0 +1,116 @@
+1. Display current working directory.
+-> pwd
+2. List all files and hidden files in current directory.
+-> ls -a
+-> ls -ld .?*
+3. Create a directory named documents .
+-> mkdir documents
+4. Create subdirectories docs , backup , and scripts .
+->cd documents
+->mkdir docs, backup, scripts
+5. Create files:
+file1.txt
+file2.txt
+notes.txt
+-> touch file1.txt, file2.txt, notes.txt
+6. Copy file1.txt into backup .
+-> cp file1.txt backup
+7. Move notes.txt into docs .
+-> mv notes.txt docs
+8. Rename file2.txt to data.txt .
+-> mv file2.txt data.txt
+9. Delete data.txt .
+-> rm data.txt
+10. Remove backup directory recursively.
+-> rm -r backup
+11. Display contents of example.txt .
+-> echo "Hello! Welcome to CDAC" > example.txt
+cat example.txt
+12. Display first 10 lines of /etc/passwd .
+-> head /etc/passwd
+13. Display last 10 lines of /etc/passwd .
+-> tail /etc/passwd
+14. Count lines, words, and characters in file.
+-> wc -l -w -c example.txt
+15. Search word Linux inside file.
+-> grep -i "Linux" file1.txt
+16. Search recursively for word error inside /var/log .
+-> grep -r "error" /var/log
+17. Find all .txt files in home directory.
+-> find ~ -type f -name "*.txt"
+18. Find empty files inside /tmp .
+-> find /tmp -type f -size 0k
+19. Find files modified within last 2 days.
+-> find ~ -datstart -mtime -2 -print
+20. Display size of report.pdf in KB.
+-> ls -lh report.pdf
+stat report.pdf
+
+21. Display file permissions using long listing format.
+-> ls -l 
+22. Give execute permission to script.sh .
+-> chmod u+x script.sh
+23. Remove write permission from others for data.txt .
+->  chmod o-w data.txt
+24. Set permission 754 on project.sh .
+->  chmod 754 on project.sh
+25. Change owner of file to another user.
+->  sudo -i
+->  useradd sukruti
+->  exit
+->  sudo chown sukruti file1.txt 
+26. Change group ownership of file.
+->  //create a group
+->  sudo groupadd finance
+-> // change group
+-> sudo chgrp finance file1.txt
+27. Create new user john .
+->  sudo useradd john
+28. Set password for john .
+->  sudo passwd sukruti 
+29. Delete user alice with home directory.
+->  sudo userdel sukruti
+30. Display currently logged in users.
+->  whami
+31. Display all environment variables.
+->  printenv
+32. Create custom shell variable and print it.
+-> MY_VAR="Hello World"
+-> echo $MY_VAR
+33. Change PS1 prompt temporarily.
+-> PS1="my-prompt > "
+34. Redirect output of ls -l into list.txt .
+-> ls -l > list.txt
+->  cat list.txt
+35. Append current date into log.txt .
+-> date  >> log.txt
+36. Redirect standard error into error.txt .
+->  ls file2.txt 2> error.txt
+37. Redirect both standard output and standard error into same file.
+-> ls file2.txt &> error.txt
+38. Use pipe to count number of running processes.
+-> ps -ef | wc -l
+39. Display only .txt files using grep .
+-> ls -l | grep "\.txt$"
+40. Sort contents of a text file.
+->  sort list.txt
+41. Remove duplicate lines from file.
+-> sort -u afile.txt -o afile.txt
+42. Compare two files using diff .
+-> diff afile.txt file.txt
+43. Merge two text files into one file.
+-> cat file.txt file2.txt > merged.txt
+44. Reverse contents of file.
+->  tac afile.txt > reversed_lines.txt
+45. Compress directory using tar .
+->  tar -czvf cppdemos.tar.gz .
+46. Extract .tar.gz archive.
+-> tar -xzvf cppdemos.tar.gz
+47. Display line numbers while viewing file.
+-> less -N afile.txt
+48. Append text into file using echo .
+-> echo "your text here" >> filename.txt
+49. Display contents of multiple files together.
+-> cat file1.txt file2.txt file3.txt
+50. Display current date and time in custom format.
+-> date "+%Y-%m-%d %H:%M:%S"
