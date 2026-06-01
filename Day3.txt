@@ -1,3 +1,24 @@
+1. Write script to check whether number is even or odd.
+2. Write script to find largest among three numbers.
+3. Write script to check prime number.
+4. Write script to calculate factorial of number.
+5. Write script to generate multiplication table.
+6. Write script using case statement for calculator operations.
+7. Write script using while loop to print even numbers.
+8. Write script using until loop to print odd numbers.
+9. Write script to calculate sum of first N numbers.
+10. Write script to print star pyramid pattern using for loop.
+11. Write script to print Floyd’s triangle.
+12. Write script to reverse a number.
+13. Write recursive factorial script.
+14. Write script to validate mobile number using regex.
+15. Write script to validate password format using regex.
+16. Write script to search pattern in text file.
+17. Write script to replace word in file using sed .
+18. Write script to count occurrences of word in file.
+19. Write script to display top 5 CPU consuming processes.
+20. Write script to display top 5 memory consuming processes.
+
 Question 1
 #!/bin/bash
 read -p "Enter number: " n
