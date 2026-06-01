@@ -1,0 +1,140 @@
+Docker
+
+Step 0: Install Docker in WSL Ubuntu
+sudo apt update
+sudo apt install docker.io -y
+
+sudo service docker start
+
+docker --version
+
+Test:
+
+sudo docker run hello-world
+
+2.Run Ubuntu Container
+sudo docker run -it ubuntu
+mkdir cdac
+ls
+exit
+==============================================
+3. Containerize Java Application
+
+mkdir java-app
+cd java-app
+
+Create Java File
+nano Hello.java
+
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello Docker");
+    }
+}
+nano Dockerfile
+
+sudo docker pull eclipse-temurin:17
+
+FROM eclipse-temurin:17          ///openjdk:17
+
+WORKDIR /app
+
+COPY Hello.java .
+
+RUN javac Hello.java
+
+CMD ["java","Hello"]
+
+sudo docker build -t java-app .
+----------------------------------------------------------------
+Q4. Docker Compose
+
+mkdir compose-demo
+
+cd compose-demo
+nano docker-compose.yml
+
+version: '3'
+
+services:
+  javaapp:
+    image: java-app
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+sudo docker compose up -d
+
+sudo docker ps
+----------------------------------------------------------------
+
+Q5. Docker Networking
+Create Network
+sudo docker network create cdac-network
+
+Run First Container
+sudo docker run -dit \
+--name container1 \
+--network cdac-network \
+ubuntu
+
+Run Second Container
+sudo docker run -dit \
+--name container2 \
+--network cdac-network \
+ubuntu
+
+Verify Network
+sudo docker network inspect cdac-network
+
+////Verify Communication
+Open Container1:
+sudo docker exec -it container1 bash
+Inside:
+apt update
+apt install iputils-ping -y
+////ping container2
+========================
+Q6. Docker Volumes
+Create Volume
+sudo docker volume create myvolume
+sudo docker volume ls
+
+Run Container With Volume
+sudo docker run -it \
+--name volcontainer \
+-v myvolume:/data \
+ubuntu
+
+Create File
+echo "CDAC Docker Volume" > /data/file.txt
+Check:
+cat /data/file.txt
+exit
+Verify Persistence
+
+Restart Container:
+
+sudo docker start volcontainer
+
+sudo docker exec -it volcontainer bash
+
+Check:
+cat /data/file.txt
+Output:
+CDAC Docker Volume
+Data persists.
+/=====================
+Q7. Docker Hub
+Login
+>docker login
+Tag Image(Replace username with your Docker Hub username.)
+docker tag java-app aayushiii17/java-app:v1
+then push
+docker push aayushiii17/java-app:v1
+then pull 
+docker pull aayushiii17/java-app:v1
+then run
+ docker run aayushiii17/java-app:v1
