@@ -1,0 +1,215 @@
+Step 1: Create a Maven Project
+1. Open Eclipse
+2. Click File → New → Maven Project
+3. Check Create a simple project
+4. Click Next
+5. Fill:
+Group Id: com.assignment
+Artifact Id: SeleniumAssignment
+6. Click Finish
+
+Step 2: Add Dependencies
+Open pom.xml and replace the dependencies section with:
+<dependencies>
+
+<dependency>
+<groupId>org.seleniumhq.selenium</groupId>
+<artifactId>selenium-java</artifactId>
+<version>4.22.0</version>
+</dependency>
+
+<dependency>
+<groupId>org.testng</groupId>
+<artifactId>testng</artifactId>
+<version>7.10.2</version>
+<scope>test</scope>
+</dependency>
+
+</dependencies>
+
+Save the file.
+Maven will automatically download all required jars.
+
+Step 3: Install TestNG Plugin
+In Eclipse:
+Help
+→ Eclipse Marketplace
+→ Search "TestNG"
+→ Install
+→ Restart Eclipse
+
+Step 4: Create Package
+Inside:
+src/test/java
+Create package:
+com.assignment.tests
+
+Step 5: Create BaseTest Class
+Right Click Package
+New → Class
+Name:
+BaseTest
+Paste:
+package com.assignment.tests;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+
+import org.testng.annotations.BeforeMethod;
+
+public class BaseTest {
+
+protected WebDriver driver;
+
+@BeforeMethod
+public void setup() {
+
+driver = new ChromeDriver();
+driver.manage().window().maximize();
+}
+
+@AfterMethod
+public void tearDown() {
+
+driver.quit();
+}
+}
+
+Step 6: Create First Test Case
+Create class:
+TextboxTest
+Paste:
+package com.assignment.tests;
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+
+import org.testng.annotations.Test;
+
+public class TextboxTest extends BaseTest {
+
+@Test
+public void verifyTextbox() {
+
+driver.get("https://artoftesting.com/samplesiteforselenium");
+
+driver.findElement(By.id("fname"))
+.sendKeys("Sayali");
+
+String value =
+driver.findElement(By.id("fname"))
+.getAttribute("value");
+
+Assert.assertEquals(value, "Sayali");
+}
+}
+
+Step 7: Create Radio Button Test
+Create:
+RadioButtonTest
+Paste:
+package com.assignment.tests;
+
+import org.openqa.selenium.By;
+import org.testng.Assert;
+
+import org.testng.annotations.Test;
+
+public class RadioButtonTest extends BaseTest {
+
+@Test
+public void verifyRadioButton() {
+
+driver.get("https://artoftesting.com/samplesiteforselenium");
+
+driver.findElement(
+By.cssSelector("input[value='male']")
+).click();
+
+Assert.assertTrue(
+driver.findElement(
+By.cssSelector("input[value='male']")
+).isSelected()
+);
+}
+}
+
+Step 8: Create Dropdown Test
+Create:
+DropdownTest
+Paste:
+package com.assignment.tests;
+
+import org.openqa.selenium.By;
+
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class DropdownTest extends BaseTest {
+
+@Test
+public void verifyDropdown() {
+
+driver.get("https://artoftesting.com/samplesiteforselenium");
+
+Select dropdown =
+new Select(
+driver.findElement(
+By.id("testingDropdown")
+)
+);
+
+dropdown.selectByVisibleText("Database Testing");
+
+Assert.assertEquals(
+dropdown.getFirstSelectedOption().getText(),
+"Database Testing"
+);
+}
+}
+
+Step 9: Create testng.xml
+
+Right Click Project
+New
+→ File
+Name:
+testng.xml
+Paste:
+<!DOCTYPE suite SYSTEM
+"https://testng.org/testng-1.0.dtd">
+
+<suite name="Assignment Suite">
+
+<test name="UI Tests">
+
+<classes>
+
+<class name="com.assignment.tests.TextboxTest"/>
+<class name="com.assignment.tests.RadioButtonTest"/>
+<class name="com.assignment.tests.DropdownTest"/>
+
+</classes>
+
+</test>
+
+</suite>
+
+Step 10: Run the Suite
+Right Click:
+testng.xml
+
+Then:
+Run As
+→ TestNG Suite
+
+Expected Output
+Eclipse Console:
+Total tests run: 3
+Passes: 3
+Failures: 0
+Skips: 0
+
+
