@@ -1,0 +1,196 @@
+1. Hello Linux
+#!/bin/bash
+echo "Hello Linux"
+
+2. Display Current Date and Time
+#!/bin/bash
+date
+
+3. Display Username
+#!/bin/bash
+whoami
+
+4. Display Current Shell
+#!/bin/bash
+echo $SHELL
+
+5. Display HOME Directory Path
+#!/bin/bash
+echo $HOME
+
+6. Using Shell Variables
+#!/bin/bash
+name="Linux"
+echo "Welcome to $name"
+
+7. Accept Username
+#!/bin/bash
+read -p "Enter username: " username
+echo "Username: $username"
+
+8. Display Username and Password
+#!/bin/bash
+read -p "Enter username: " username
+read -s -p "Enter password: " password
+echo
+echo "Username: $username"
+echo "Password: $password"
+
+9. Add Two Numbers Using Command-Line Arguments
+#!/bin/bash
+sum=$(($1+$2))
+echo "Sum = $sum"
+
+10. Subtraction, Multiplication, Division
+#!/bin/bash
+echo "Subtraction = $(($1-$2))"
+echo "Multiplication = $(($1*$2))"
+echo "Division = $(($1/$2))"
+
+11. Display All Command-Line Arguments
+#!/bin/bash
+echo $@
+
+12. Count Total Arguments Passed
+#!/bin/bash
+echo "Total Arguments = $#"
+
+13. Concatenate Two Strings
+#!/bin/bash
+str1="Hello"
+str2="Linux"
+echo "$str1 $str2"
+
+14. Swap Two Numbers
+#!/bin/bash
+a=10
+b=20
+temp=$a
+a=$b
+b=$temp
+echo "a=$a b=$b"
+
+15. Square and Cube of Number
+#!/bin/bash
+read -p "Enter number: " n
+echo "Square = $((n*n))"
+echo "Cube = $((n*n*n))"
+
+16. Display All .txt Files
+#!/bin/bash
+ls *.txt
+
+17. Display Hidden Files
+#!/bin/bash
+ls -d .*
+
+18. Count Number of Files in Current Directory
+#!/bin/bash
+find . -maxdepth 1 -type f | wc -l
+
+19. Check Whether File Exists
+#!/bin/bash
+read -p "Enter file name: " file
+if [ -f "$file" ]
+then
+echo "File exists"
+else
+echo "File does not exist"
+fi
+
+20. Check Whether Directory Exists
+#!/bin/bash
+read -p "Enter directory name: " dir
+if [ -d "$dir" ]
+then
+echo "Directory exists"
+else
+echo "Directory does not exist"
+fi
+
+21. Backup Files Into Another Directory
+#!/bin/bash
+read -p "Enter source directory: " src
+read -p "Enter destination directory: " dest
+cp -r "$src"/* "$dest"
+
+22. Count Lines in File
+#!/bin/bash
+read -p "Enter file name: " file
+wc -l < "$file"
+
+23. Count Words in File
+#!/bin/bash
+read -p "Enter file name: " file
+wc -w < "$file"
+
+24. Count Characters in File
+#!/bin/bash
+read -p "Enter file name: " file
+wc -m < "$file"
+
+25. Search Word in File Using grep
+#!/bin/bash
+read -p "Enter file name: " file
+read -p "Enter word: " word
+grep "$word" "$file"
+
+26. Display First and Last Line of File
+#!/bin/bash
+read -p "Enter file name: " file
+head -1 "$file"
+tail -1 "$file"
+
+27. Append Text Into File
+#!/bin/bash
+read -p "Enter file name: " file
+read -p "Enter text: " text
+echo "$text" >> "$file"
+
+28. Create System Report File
+#!/bin/bash
+echo "Username: $(whoami)" > report.txt
+echo "Hostname: $(hostname)" >> report.txt
+echo "Date: $(date)" >> report.txt
+echo "Current Directory: $(pwd)" >> report.txt
+
+29. Display Currently Logged In Users
+#!/bin/bash
+who
+
+30. Display System Uptime
+#!/bin/bash
+uptime
+
+31. Display Memory Usage
+#!/bin/bash
+free -h
+
+32. Display Disk Usage
+#!/bin/bash
+df -h
+
+33. Monitor Running Processes
+#!/bin/bash
+ps -ef
+
+34. Arithmetic Operations Using expr
+#!/bin/bash
+read -p "Enter first number: " a
+read -p "Enter second number: " b
+echo "Addition = $(expr $a + $b)"
+echo "Subtraction = $(expr $a - $b)"
+echo "Multiplication = $(expr $a \* $b)"
+echo "Division = $(expr $a / $b)"
+
+35. Display Process ID of Current Shell
+#!/bin/bash
+echo $$
+
+36. Print Multiplication Table
+#!/bin/bash
+read -p "Enter number: " num
+for ((i=1;i<=10;i++))
+do
+echo "$num x $i = $((num*i))"
+done
